@@ -25,6 +25,10 @@ if ($problema === '' || $problema === null) {
             require 'views/problema7.php';
             break;
 
+        case '8':
+            require 'views/problema8.php';
+            break;    
+
         case '9':
             require 'views/problema9.php';
             break;

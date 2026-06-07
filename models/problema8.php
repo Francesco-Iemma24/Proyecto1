@@ -1,0 +1,47 @@
+<?php
+
+class Problema8Model 
+{
+    public function obtenerEstacion($fecha)
+    {
+        if (empty($fecha)) {
+            return [
+                'fecha_formateada' => '--',
+                'estacion' => 'No ingresada',
+                'imagen' => 'default.jpg'
+            ];
+        }
+
+        // Convertir la fecha para extraer mes y día
+        $timestamp = strtotime($fecha);
+        $mes = (int)date('m', $timestamp);
+        $dia = (int)date('d', $timestamp);
+        
+        // Formato DD-MM requerido para la vista
+        $fechaFormateada = date('d-m', $timestamp);
+
+        $estacion = "";
+        $imagen = "";
+
+        // Lógica de estaciones (Hemisferio Sur, según tu captura de pantalla)
+        if (($mes == 9 && $dia >= 21) || ($mes == 10) || ($mes == 11) || ($mes == 12 && $dia <= 20)) {
+            $estacion = "Primavera";
+            $imagen = "primavera.jpg";
+        } elseif (($mes == 12 && $dia >= 21) || ($mes == 1) || ($mes == 2) || ($mes == 3 && $dia <= 20)) {
+            $estacion = "Verano";
+            $imagen = "verano.jpg";
+        } elseif (($mes == 3 && $dia >= 21) || ($mes == 4) || ($mes == 5) || ($mes == 6 && $dia <= 20)) {
+            $estacion = "Otoño";
+            $imagen = "otoño.jpg";
+        } else {
+            $estacion = "Invierno";
+            $imagen = "invierno.jpg";
+        }
+
+        return [
+            'fecha_formateada' => $fechaFormateada,
+            'estacion' => $estacion,
+            'imagen' => $imagen
+        ];
+    }
+}
