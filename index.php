@@ -20,6 +20,14 @@ if ($problema === '' || $problema === null) {
         case '4':
             require 'views/problema4.php';
             break;
+
+        case '7':
+            require 'views/problema7.php';
+            break;
+
+        case '9':
+            require 'views/problema9.php';
+            break;
         default:
             echo '<main><p style="text-align:center;color:var(--muted);font-family:var(--font-mono);">Problema no encontrado.</p></main>';
     }

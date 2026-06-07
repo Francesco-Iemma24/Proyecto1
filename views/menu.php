@@ -83,5 +83,49 @@
             </a>
         </div>
 
+        <div class="problem-card">
+            <span class="card-num-bg">07</span>
+            <div class="card-top">
+                <span class="card-badge">Problema #7</span>
+                <span class="card-icon"></span>
+            </div>
+            <h3 class="card-title">Calculadora de Datos Estadísticos</h3>
+            <p class="card-desc">
+                Permite ingresar una colección de notas y calcula promedio,
+                desviación estándar, nota mínima y nota máxima utilizando foreach.
+            </p>
+            <div class="card-tags">
+                <span class="tag">foreach</span>
+                <span class="tag">array</span>
+                <span class="tag">estadística</span>
+            </div>
+            <a href="?problema=7" class="btn-ver">
+                Abrir problema
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <div class="problem-card">
+            <span class="card-num-bg">09</span>
+            <div class="card-top">
+                <span class="card-badge">Problema #9</span>
+                <span class="card-icon"></span>
+            </div>
+            <h3 class="card-title">Potencias de un Número</h3>
+            <p class="card-desc">
+                Solicita un número del 1 al 9 y genera las primeras 15 potencias
+                del número ingresado.
+            </p>
+            <div class="card-tags">
+                <span class="tag">for</span>
+                <span class="tag">pow()</span>
+                <span class="tag">potencias</span>
+            </div>
+            <a href="?problema=9" class="btn-ver">
+                Abrir problema
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
     </div>
 </main>
