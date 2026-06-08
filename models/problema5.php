@@ -14,7 +14,6 @@ class Problema5
         $resultado = [];
 
         foreach ($edades as $edad) {
-
             if ($edad >= 0 && $edad <= 12) {
                 $categoria = 'Niño';
                 $estadisticas['ninos']++;
@@ -27,7 +26,8 @@ class Problema5
                 $categoria = 'Adulto';
                 $estadisticas['adultos']++;
             }
-            else {
+            // Cambiado a condición explícita gracias al filtro del controlador
+            elseif ($edad >= 65 && $edad <= 120) {
                 $categoria = 'Adulto Mayor';
                 $estadisticas['adultosMayores']++;
             }

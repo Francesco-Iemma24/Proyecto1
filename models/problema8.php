@@ -1,29 +1,20 @@
 <?php
 
-class Problema8Model 
+class Problema8
 {
-    public function obtenerEstacion($fecha)
+    public static function obtenerEstacion($fecha)
     {
-        if (empty($fecha)) {
-            return [
-                'fecha_formateada' => '--',
-                'estacion' => 'No ingresada',
-                'imagen' => 'default.jpg'
-            ];
-        }
-
-        // Convertir la fecha para extraer mes y día
+        // Ya viene validada estrictamente desde el controlador seguro
         $timestamp = strtotime($fecha);
         $mes = (int)date('m', $timestamp);
         $dia = (int)date('d', $timestamp);
         
-        // Formato DD-MM requerido para la vista
         $fechaFormateada = date('d-m', $timestamp);
 
         $estacion = "";
         $imagen = "";
 
-        // Lógica de estaciones (Hemisferio Sur, según tu captura de pantalla)
+        // Lógica de estaciones por calendario
         if (($mes == 9 && $dia >= 21) || ($mes == 10) || ($mes == 11) || ($mes == 12 && $dia <= 20)) {
             $estacion = "Primavera";
             $imagen = "primavera.jpg";

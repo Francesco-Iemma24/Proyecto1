@@ -1,22 +1,19 @@
 <?php
 
-class Problema7Controller
+class Problema7
 {
-    public function calcular($notas)
+    public static function calcularEstadisticas(array $notas)
     {
         $cantidad = count($notas);
 
         $promedio = array_sum($notas) / $cantidad;
-
         $minima = min($notas);
         $maxima = max($notas);
 
         $sumaCuadrados = 0;
-
         foreach ($notas as $nota) {
             $sumaCuadrados += pow($nota - $promedio, 2);
         }
-
         $desviacion = sqrt($sumaCuadrados / $cantidad);
 
         return [

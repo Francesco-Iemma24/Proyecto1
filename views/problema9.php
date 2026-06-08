@@ -1,67 +1,57 @@
 <?php
-
 require_once 'controllers/Problema9Controller.php';
 
-$potencias = [];
+$resultado = null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $numero = intval($_POST['numero']);
-
-    if ($numero >= 1 && $numero <= 9) {
-
-        $controlador = new Problema9Controller();
-
-        $potencias = $controlador->procesar($numero);
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['base_numero'])) {
+    // Sanitizamos la entrada como un número entero
+    $base = filter_input(INPUT_POST, 'base_numero', FILTER_SANITIZE_NUMBER_INT);
+    
+    $resultado = Problema9Controller::procesar($base);
 }
 ?>
 
-<h2>Problema 9 - Potencias</h2>
+<h2>Problema #9 - Potencias Sucesivas (1 al 9)</h2>
 
 <form method="POST">
-
-    <label>
-        Ingrese un número (1 al 9)
-    </label>
-
-    <br><br>
-
-    <input
-        type="number"
-        name="numero"
-        min="1"
-        max="9"
-        required>
-
-    <br><br>
-
-    <button type="submit">
-        Generar
-    </button>
-
+    <div class="form-group">
+        <label>Número Base (Dígito del 1 al 9):</label>
+        <input 
+            type="number" 
+            name="base_numero" 
+            min="1" 
+            max="9" 
+            placeholder="Ej: 5"
+            required>
+    </div>
+    <button type="submit">Generar Potencias →</button>
 </form>
 
-<?php if (!empty($potencias)) : ?>
+<?php if ($resultado && isset($resultado['error'])): ?>
+    <hr>
+    <div class="error-box" style="border-left: 4px solid #ef4444; background-color: #fef2f2; padding: 15px; margin-top: 20px;">
+        <h3 style="color: #b91c1c; margin: 0 0 5px 0;">Error de Validación</h3>
+        <p style="color: #991b1b; margin: 0; font-size: 15px;">
+            <?= htmlspecialchars($resultado['error']) ?>
+        </p>
+    </div>
 
-<div class="resultado">
-
-    <h3>Primeras 15 potencias</h3>
-
-    <ul>
-
-        <?php foreach ($potencias as $exponente => $valor) : ?>
-
-            <li>
-                <?= $exponente ?>
-                →
-                <?= $valor ?>
-            </li>
-
+<?php elseif (!empty($resultado)): ?>
+    <hr>
+    <h3>Resultados (Potencias de 1 a 15)</h3>
+    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 400px; font-family: monospace;">
+        <tr style="background-color: #f3f4f6; font-family: sans-serif;">
+            <th>Exponente</th>
+            <th>Resultado</th>
+        </tr>
+        <?php foreach ($resultado as $exponente => $valor): ?>
+            <tr>
+                <td><sup><?= htmlspecialchars($exponente) ?></sup></td>
+                <td><?= htmlspecialchars(number_format($valor)) ?></td>
+            </tr>
         <?php endforeach; ?>
-
-    </ul>
-
-</div>
-
+    </table>
 <?php endif; ?>
+
+<br><br>
+<a href="index.php">Volver al menú</a>

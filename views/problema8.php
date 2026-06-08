@@ -1,13 +1,16 @@
 <?php
 // 1. IMPORTANTE: Requerir los archivos necesarios para que PHP reconozca las clases
 require_once 'controllers/Problema8Controller.php';
-require_once 'models/problema8.php';
+require_once 'models/Problema8.php'; // Asegúrate de que el nombre del archivo coincida con la clase
 
 // Captura del POST y llamado al controlador correspondiente
 $resultado = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fecha_usuario'])) {
-    $controlador = new Problema8Controller();
-    $resultado = $controlador->procesar($_POST['fecha_usuario']);
+    // Sanitizamos levemente el string recibido antes de pasarlo al backend
+    $fechaInput = filter_input(INPUT_POST, 'fecha_usuario', FILTER_DEFAULT);
+    
+    // LLAMADA ESTÁTICA UNIFICADA: Se remueve la inicialización por objeto
+    $resultado = Problema8Controller::procesar($fechaInput);
 }
 ?>
 
@@ -24,7 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fecha_usuario'])) {
             </button>
         </form>
 
-        <?php if ($resultado): ?>
+        <?php if ($resultado && isset($resultado['error'])): ?>
+            <div class="error-box" style="border-left: 4px solid #ef4444; background-color: #fef2f2; padding: 15px; margin-top: 25px; border-radius: 8px; text-align: left;">
+                <h4 style="color: #b91c1c; margin: 0 0 5px 0;">Error de Entrada</h4>
+                <p style="color: #991b1b; margin: 0; font-size: 14px;">
+                    <?= htmlspecialchars($resultado['error']) ?>
+                </p>
+            </div>
+
+        <?php elseif ($resultado && isset($resultado['estacion'])): ?>
             <div class="resultado-box" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #f1f5f9;">
                 <p style="color: #475569; font-size: 18px; margin: 5px 0;">
                     Fecha ingresada: <strong><?php echo htmlspecialchars($resultado['fecha_formateada']); ?></strong>
@@ -34,7 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fecha_usuario'])) {
                 </p>
                 
                 <div style="margin-top: 15px; border-radius: 12px; overflow: hidden;">
-                    <img src="assets/img/<?php echo $resultado['imagen']; ?>" alt="<?php echo $resultado['estacion']; ?>" style="width: 100%; max-height: 250px; object-fit: cover; display: block;">
+                    <img src="assets/img/<?php echo htmlspecialchars($resultado['imagen']); ?>" 
+                         alt="<?php echo htmlspecialchars($resultado['estacion']); ?>" 
+                         style="width: 100%; max-height: 250px; object-fit: cover; display: block;">
                 </div>
             </div>
         <?php endif; ?>

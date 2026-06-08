@@ -1,40 +1,43 @@
 <?php
 
+require_once __DIR__ . '/../models/Problema7.php';
+
 class Problema7Controller
 {
-    public function procesar($notas)
+    public static function procesar($notas)
     {
-        // 1. Validar que el arreglo no esté vacío para evitar divisiones por cero
-        if (empty($notas) || !is_array($notas)) {
+        // 1. Validar que la entrada sea efectivamente un arreglo
+        if (!is_array($notas)) {
+            return ['error' => 'Los datos provistos son inválidos.'];
+        }
+
+        // 2. Limpiar el arreglo removiendo campos vacíos o nulos
+        $notasLimpias = array_filter($notas, function($valor) {
+            return $valor !== null && $valor !== '';
+        });
+
+        // 3. Evitar procesamiento si el arreglo quedó vacío (Mitiga División por Cero)
+        if (empty($notasLimpias)) {
             return [
-                'promedio' => 0,
-                'desviacion' => 0,
-                'minima' => 0,
-                'maxima' => 0
+                'error' => 'Por favor, ingrese al menos una nota válida.',
+                'promedio' => 0, 'desviacion' => 0, 'minima' => 0, 'maxima' => 0
             ];
         }
 
-        // 2. Obtener la cantidad de notas
-        $cantidad = count($notas);
-
-        // 3. Calcular Promedio, Mínimo y Máximo usando funciones nativas de PHP
-        $promedio = array_sum($notas) / $cantidad;
-        $minima = min($notas);
-        $maxima = max($notas);
-
-        // 4. Calcular la Desviación Estándar (Poblacional)
-        $sumaCuadrados = 0;
-        foreach ($notas as $nota) {
-            $sumaCuadrados += pow($nota - $promedio, 2);
+        // 4. Validar que cada elemento sea un número real dentro de la escala académica (0 a 100)
+        $notasValidadas = [];
+        foreach ($notasLimpias as $nota) {
+            if (is_numeric($nota) && $nota >= 0 && $nota <= 100) {
+                $notasValidadas[] = (float)$nota;
+            } else {
+                return [
+                    'error' => 'Se detectaron notas inválidas o fuera del rango académico permitido (0 - 100).',
+                    'promedio' => 0, 'desviacion' => 0, 'minima' => 0, 'maxima' => 0
+                ];
+            }
         }
-        $desviacion = sqrt($sumaCuadrados / $cantidad);
 
-        // 5. Retornar los resultados redondeados a 2 decimales
-        return [
-            'promedio' => round($promedio, 2),
-            'desviacion' => round($desviacion, 2),
-            'minima' => $minima,
-            'maxima' => $maxima
-        ];
+        // 5. Enviar los datos completamente puros al Modelo
+        return Problema7::calcularEstadisticas($notasValidadas);
     }
 }

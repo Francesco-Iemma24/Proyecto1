@@ -10,7 +10,6 @@ if (isset($_POST['calcular'])) {
 <main>
 <div class="problem-page">
 
-
     <div class="problem-header">
         <div class="eyebrow">Problema #4</div>
         <h2>PARES E IMPARES</h2>
@@ -31,11 +30,11 @@ if (isset($_POST['calcular'])) {
         <div class="resultado-label">Resultado</div>
         <div class="stat-row">
             <div class="stat-box">
-                <span class="stat-val" style="color:#c8f135;"><?= number_format($resultado['pares']) ?></span>
+                <span class="stat-val" style="color:#c8f135;"><?= htmlspecialchars(number_format($resultado['pares'])) ?></span>
                 <span class="stat-label">Suma Pares</span>
             </div>
             <div class="stat-box">
-                <span class="stat-val" style="color:#35f1f1;"><?= number_format($resultado['impares']) ?></span>
+                <span class="stat-val" style="color:#35f1f1;"><?= htmlspecialchars(number_format($resultado['impares'])) ?></span>
                 <span class="stat-label">Suma Impares</span>
             </div>
         </div>
