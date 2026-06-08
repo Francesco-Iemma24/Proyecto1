@@ -84,6 +84,62 @@
         </div>
 
         <div class="problem-card">
+            <span class="card-num-bg">05</span>
+
+            <div class="card-top">
+                <span class="card-badge">Problema #5</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <h3 class="card-title">Clasificación de Edades</h3>
+
+            <p class="card-desc">
+                Clasifica 5 personas como Niño, Adolescente,
+                Adulto o Adulto Mayor. Genera estadísticas
+                y una gráfica con los resultados.
+            </p>
+
+            <div class="card-tags">
+                <span class="tag">if</span>
+                <span class="tag">foreach</span>
+                <span class="tag">gráficas</span>
+            </div>
+
+            <a href="?problema=5" class="btn-ver">
+                Abrir problema
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+       <div class="problem-card">
+    <span class="card-num-bg">06</span>
+
+        <div class="card-top">
+            <span class="card-badge">Problema #6</span>
+            <span class="card-icon"></span>
+        </div>
+
+        <h3 class="card-title">Presupuesto Hospitalario</h3>
+
+        <p class="card-desc">
+            Distribuye el presupuesto anual entre
+            Ginecología (40%), Traumatología (35%)
+            y Pediatría (25%), mostrando una gráfica circular.
+        </p>
+
+        <div class="card-tags">
+            <span class="tag">porcentajes</span>
+            <span class="tag">formularios</span>
+            <span class="tag">gráficas</span>
+        </div>
+
+        <a href="?problema=6" class="btn-ver">
+            Abrir problema
+            <span class="arrow">→</span>
+        </a>
+        </div>
+
+        <div class="problem-card">
             <span class="card-num-bg">07</span>
             <div class="card-top">
                 <span class="card-badge">Problema #7</span>
@@ -100,6 +156,33 @@
                 <span class="tag">estadística</span>
             </div>
             <a href="?problema=7" class="btn-ver">
+                Abrir problema
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <div class="problem-card">
+            <span class="card-num-bg">08</span>
+
+            <div class="card-top">
+                <span class="card-badge">Problema #8</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <h3 class="card-title">Estación del Año</h3>
+
+            <p class="card-desc">
+                Determina la estación del año a partir de una fecha
+                ingresada por el usuario y muestra el resultado de forma visual.
+            </p>
+
+            <div class="card-tags">
+                <span class="tag">fechas</span>
+                <span class="tag">switch</span>
+                <span class="tag">validación</span>
+            </div>
+
+            <a href="?problema=8" class="btn-ver">
                 Abrir problema
                 <span class="arrow">→</span>
             </a>
