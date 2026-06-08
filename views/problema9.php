@@ -17,51 +17,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Problema 9 - Potencias</h2>
+<main>
+<div class="problem-page">
 
-<form method="POST">
+    <div class="problem-header">
+        <div class="eyebrow">Problema #9</div>
+        <h2>POTENCIAS</h2>
+        <p>Ingresa un número del 1 al 9 y se generarán sus primeras 15 potencias.</p>
+    </div>
 
-    <label>
-        Ingrese un número (1 al 9)
-    </label>
+    <div class="form-card">
+        <form method="POST">
+            <div class="form-group">
+                <label>Ingrese un número (1 al 9)</label>
+                <input type="number" name="numero" min="1" max="9" required>
+            </div>
+            <button type="submit">Generar →</button>
+        </form>
+    </div>
 
-    <br><br>
-
-    <input
-        type="number"
-        name="numero"
-        min="1"
-        max="9"
-        required>
-
-    <br><br>
-
-    <button type="submit">
-        Generar
-    </button>
-
-</form>
-
-<?php if (!empty($potencias)) : ?>
-
-<div class="resultado">
-
-    <h3>Primeras 15 potencias</h3>
-
-    <ul>
-
-        <?php foreach ($potencias as $exponente => $valor) : ?>
-
-            <li>
-                <?= $exponente ?>
-                →
-                <?= $valor ?>
-            </li>
-
-        <?php endforeach; ?>
-
-    </ul>
+    <?php if (!empty($potencias)): ?>
+    <div class="resultado">
+        <h3>Primeras 15 potencias</h3>
+        <ul>
+            <?php foreach ($potencias as $exponente => $valor): ?>
+                <li><?= $exponente ?> → <?= $valor ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
 
 </div>
-
-<?php endif; ?>
+</main>

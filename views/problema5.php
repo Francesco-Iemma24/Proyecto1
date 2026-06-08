@@ -16,94 +16,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Problema #5 - Clasificación de Edades</h2>
+<main>
+<div class="problem-page">
 
-<form method="POST">
+    <div class="problem-header">
+        <div class="eyebrow">Problema #5</div>
+        <h2>CLASIFICACIÓN DE EDADES</h2>
+        <p>Ingresa 5 edades y se clasificarán en Niños, Adolescentes, Adultos y Adultos Mayores.</p>
+    </div>
 
-    <?php for($i=1; $i<=5; $i++): ?>
+    <div class="form-card">
+        <form method="POST">
+            <div class="form-group">
+                <?php for($i=1; $i<=5; $i++): ?>
+                    <label>Edad <?= $i ?>:</label>
+                    <input type="number" name="edad<?= $i ?>" min="0" required>
+                    <br><br>
+                <?php endfor; ?>
+            </div>
+            <button type="submit">Procesar →</button>
+        </form>
+    </div>
 
-        <label>Edad <?= $i ?>:</label>
+    <?php if($datos): ?>
+    <div class="resultado">
+        <div class="resultado-label">Resultados</div>
 
-        <input
-            type="number"
-            name="edad<?= $i ?>"
-            min="0"
-            required>
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Edad</th>
+                <th>Categoría</th>
+            </tr>
+            <?php foreach($datos['resultado'] as $fila): ?>
+            <tr>
+                <td><?= (int)$fila['edad'] ?></td>
+                <td><?= htmlspecialchars($fila['categoria']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
 
-        <br><br>
+        <br>
 
-    <?php endfor; ?>
+        <div class="grafica-container">
+            <canvas id="graficaEdades" width="700" height="350"></canvas>
+        </div>
 
-    <button type="submit">
-        Procesar
-    </button>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+        new Chart(
+            document.getElementById('graficaEdades'),
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Niños', 'Adolescentes', 'Adultos', 'Adultos Mayores'],
+                    datasets: [{
+                        label: 'Cantidad de Personas',
+                        data: [
+                            <?= $datos['estadisticas']['ninos'] ?>,
+                            <?= $datos['estadisticas']['adolescentes'] ?>,
+                            <?= $datos['estadisticas']['adultos'] ?>,
+                            <?= $datos['estadisticas']['adultosMayores'] ?>
+                        ]
+                    }]
+                }
+            }
+        );
+        </script>
 
-</form>
+    </div>
+    <?php endif; ?>
 
-<?php if($datos): ?>
-
-<hr>
-
-<h3>Resultados</h3>
-
-<table border="1" cellpadding="10">
-
-<tr>
-    <th>Edad</th>
-    <th>Categoría</th>
-</tr>
-
-<?php foreach($datos['resultado'] as $fila): ?>
-
-<tr>
-    <td><?= (int)$fila['edad'] ?></td>
-    <td><?= htmlspecialchars($fila['categoria']) ?></td>
-</tr>
-
-<?php endforeach; ?>
-
-</table>
-
-<br>
-
-<div class="grafica-container">
-    <canvas id="graficaEdades" width="700" height="350"></canvas>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-
-new Chart(
-    document.getElementById('graficaEdades'),
-    {
-        type: 'bar',
-
-        data: {
-            labels: [
-                'Niños',
-                'Adolescentes',
-                'Adultos',
-                'Adultos Mayores'
-            ],
-
-            datasets: [{
-                label: 'Cantidad de Personas',
-
-                data: [
-                    <?= $datos['estadisticas']['ninos'] ?>,
-                    <?= $datos['estadisticas']['adolescentes'] ?>,
-                    <?= $datos['estadisticas']['adultos'] ?>,
-                    <?= $datos['estadisticas']['adultosMayores'] ?>
-                ]
-            }]
-        }
-    }
-);
-
-</script>
-
-<?php endif; ?>
-
-<br>
-<a href="index.php">Volver al menú</a>
+</main>

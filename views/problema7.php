@@ -25,49 +25,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Problema 7 - Datos Estadísticos</h2>
+<main>
+<div class="problem-page">
 
-<form method="POST">
+    <div class="problem-header">
+        <div class="eyebrow">Problema #7</div>
+        <h2>DATOS ESTADÍSTICOS</h2>
+        <p>Ingresa las notas separadas por comas. Se calculará promedio, desviación estándar, mínima y máxima.</p>
+    </div>
 
-    <label>
-        Ingrese las notas separadas por comas:
-    </label>
+    <div class="form-card">
+        <form method="POST">
+            <div class="form-group">
+                <label>Ingresa las notas separadas por comas</label>
+                <input type="text" name="notas" placeholder="80,90,75,100" required>
+            </div>
+            <button type="submit">Calcular →</button>
+        </form>
+    </div>
 
-    <br><br>
-
-    <input
-        type="text"
-        name="notas"
-        placeholder="80,90,75,100">
-
-    <br><br>
-
-    <button type="submit">
-        Calcular
-    </button>
-
-</form>
-
-<?php if ($resultado) : ?>
-
-<div class="resultado">
-
-    <p><strong>Promedio:</strong>
-        <?= $resultado['promedio'] ?>
-    </p>
-
-    <p><strong>Desviación estándar:</strong>
-        <?= $resultado['desviacion'] ?>
-    </p>
-
-    <p><strong>Nota mínima:</strong>
-        <?= $resultado['minima'] ?>
-    </p>
-
-    <p><strong>Nota máxima:</strong>
-        <?= $resultado['maxima'] ?>
-    </p>
+    <?php if ($resultado): ?>
+    <div class="resultado">
+        <div class="resultado-label">Resultado</div>
+        <div class="stat-row">
+            <div class="stat-box">
+                <span class="stat-val"><?= number_format($resultado['promedio'], 2) ?></span>
+                <span class="stat-label">Promedio</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= number_format($resultado['desviacion'], 2) ?></span>
+                <span class="stat-label">Desv. Std</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= $resultado['minima'] ?></span>
+                <span class="stat-label">Nota mínima</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= $resultado['maxima'] ?></span>
+                <span class="stat-label">Nota máxima</span>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
 </div>
-
-<?php endif; ?>
+</main>

@@ -1,6 +1,8 @@
 <?php
 
-class Problema7Controller
+require_once __DIR__ . '/../utils/Utilidades.php';
+
+class Problema7
 {
     public function calcular($notas)
     {
@@ -21,7 +23,7 @@ class Problema7Controller
 
         return [
             'promedio' => round($promedio, 2),
-            'desviacion' => round($desviacion, 2),
+            'desviacion' => round(Utilidades::calcularDesviacion($notas), 2),
             'minima' => $minima,
             'maxima' => $maxima
         ];

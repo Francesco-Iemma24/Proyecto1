@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../models/Problema8.php';
+
 class Problema8Controller
 {
     public function procesar($fecha)
@@ -14,7 +16,7 @@ class Problema8Controller
         }
 
         // 2. Instanciar el modelo del problema 8
-        $modelo = new Problema8Model();
+        $modelo = new Problema8();
         $resultado = $modelo->obtenerEstacion($fecha);
 
         // 3. Retornar los datos limpios para la vista

@@ -1,6 +1,6 @@
 <?php
 
-class Problema8Model 
+class Problema8
 {
     public function obtenerEstacion($fecha)
     {
