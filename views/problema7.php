@@ -23,56 +23,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Problema 7 - Datos Estadísticos</h2>
+<main>
+<div class="problem-page">
 
-<form method="POST">
-    <label>
-        Ingrese las notas separadas por comas:
-    </label>
-    <br><br>
-    <input
-        type="text"
-        name="notas"
-        placeholder="80,90,75,100"
-        required>
-
-    <br><br>
-    <button type="submit">
-        Calcular
-    </button>
-</form>
-
-<?php if ($resultado && isset($resultado['error'])) : ?>
-    <hr>
-    <div class="error-box" style="border-left: 4px solid #ef4444; background-color: #fef2f2; padding: 15px; margin-top: 20px;">
-        <h3 style="color: #b91c1c; margin: 0 0 5px 0;">Error de Validación</h3>
-        <p style="color: #991b1b; margin: 0; font-size: 15px;">
-            <?= htmlspecialchars($resultado['error']) ?>
-        </p>
+    <div class="problem-header">
+        <div class="eyebrow">Problema #7</div>
+        <h2>DATOS ESTADÍSTICOS</h2>
+        <p>Ingresa una lista de notas separadas por comas y se calcularán las estadísticas.</p>
     </div>
 
-<?php elseif ($resultado) : ?>
-<div class="resultado">
-    <hr>
-    <h3>Estadísticas Generadas</h3>
-    
-    <p><strong>Promedio:</strong>
-        <?= htmlspecialchars($resultado['promedio']) ?>
-    </p>
+    <div class="form-card">
+        <form method="POST">
+            <div class="form-group">
+                <label>Notas separadas por comas</label>
+                <input type="text" name="notas" placeholder="80,90,75,100" required>
+            </div>
+            <button type="submit">Calcular →</button>
+        </form>
+    </div>
 
-    <p><strong>Desviación estándar:</strong>
-        <?= htmlspecialchars($resultado['desviacion']) ?>
-    </p>
+    <?php if ($resultado && isset($resultado['error'])): ?>
+        <div class="resultado" style="border-left: 4px solid #ef4444; background-color: #fef2f2;">
+            <div class="resultado-label" style="color: #b91c1c;">Error de Validación</div>
+            <p style="color: #991b1b; margin: 5px 0 0 0; font-size: 15px;">
+                <?= htmlspecialchars($resultado['error']) ?>
+            </p>
+        </div>
 
-    <p><strong>Nota mínima:</strong>
-        <?= htmlspecialchars($resultado['minima']) ?>
-    </p>
+    <?php elseif ($resultado): ?>
+    <div class="resultado">
+        <div class="resultado-label">Estadísticas Generadas</div>
+        <div class="stat-row">
+            <div class="stat-box">
+                <span class="stat-val"><?= htmlspecialchars($resultado['promedio']) ?></span>
+                <span class="stat-label">Promedio</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= htmlspecialchars($resultado['desviacion']) ?></span>
+                <span class="stat-label">Desviación estándar</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= htmlspecialchars($resultado['minima']) ?></span>
+                <span class="stat-label">Nota mínima</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val"><?= htmlspecialchars($resultado['maxima']) ?></span>
+                <span class="stat-label">Nota máxima</span>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
-    <p><strong>Nota máxima:</strong>
-        <?= htmlspecialchars($resultado['maxima']) ?>
-    </p>
 </div>
-<?php endif; ?>
-
-<br><br>
-<a href="index.php">Volver al menú</a>
+</main>
