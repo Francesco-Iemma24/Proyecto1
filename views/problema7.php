@@ -4,21 +4,13 @@ require_once 'controllers/Problema7Controller.php';
 $resultado = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 1. Capturamos la cadena de texto de forma segura utilizando filter_input
-    $notasTexto = filter_input(INPUT_POST, 'notas', FILTER_DEFAULT) ?? '';
+    $notas = $_POST['notas'] ?? [];
 
-    if (!empty(trim($notasTexto))) {
-        // 2. Separamos por comas
-        $notasSeparadas = explode(',', $notasTexto);
-
-        // 3. Limpiamos espacios en blanco invisibles, pero dejamos el string original
-        // para que el controlador verifique si realmente es un número legítimo.
-        $notas = array_map('trim', $notasSeparadas);
-
-        // 4. Ejecutamos el método estático del controlador seguro
+    if (is_array($notas) && !empty($notas)) {
+        $notas = array_map('trim', $notas);
         $resultado = Problema7Controller::procesar($notas);
     } else {
-        $resultado = ['error' => 'Por favor, ingrese una lista de notas separadas por comas.'];
+        $resultado = ['error' => 'Por favor, ingrese al menos una nota válida.'];
     }
 }
 ?>
@@ -29,17 +21,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="problem-header">
         <div class="eyebrow">Problema #7</div>
         <h2>DATOS ESTADÍSTICOS</h2>
-        <p>Ingresa una lista de notas separadas por comas y se calcularán las estadísticas.</p>
+        <p>Indica cuántas notas deseas ingresar. El sistema generará los campos automáticamente.</p>
     </div>
 
     <div class="form-card">
-        <form method="POST">
+
+        <!-- Paso 1: cantidad de notas -->
+        <div id="paso1">
             <div class="form-group">
-                <label>Notas separadas por comas</label>
-                <input type="text" name="notas" placeholder="80,90,75,100" required>
+                <label>¿Cuántas notas deseas ingresar?</label>
+                <input type="number" id="cantidadNotas" placeholder="Ej: 4" min="1" max="50">
+            </div>
+            <button type="button" onclick="generarCampos()" style="width:100%;background:var(--lime);color:var(--bg);border:none;border-radius:10px;padding:14px;font-family:var(--font-m);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:6px;transition:filter .2s,transform .15s;">Generar Campos →</button>
+        </div>
+
+        <!-- Paso 2: campos generados dinámicamente -->
+        <form method="POST" id="formNotas" style="display:none;">
+            <div class="form-group">
+                <label id="labelNotas"></label>
+                <div class="inputs-grid" id="camposNotas"></div>
             </div>
             <button type="submit">Calcular →</button>
         </form>
+
     </div>
 
     <?php if ($resultado && isset($resultado['error'])): ?>
@@ -76,3 +80,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </div>
 </main>
+
+<script>
+function generarCampos() {
+    const cantidad = parseInt(document.getElementById('cantidadNotas').value);
+
+    if (isNaN(cantidad) || cantidad < 1 || cantidad > 50) {
+        alert('Ingresa una cantidad válida entre 1 y 50.');
+        return;
+    }
+
+    const contenedor = document.getElementById('camposNotas');
+    const label      = document.getElementById('labelNotas');
+    const form       = document.getElementById('formNotas');
+
+    contenedor.innerHTML = '';
+    label.textContent = 'Ingresa las ' + cantidad + ' notas (0 – 100)';
+
+    for (let i = 1; i <= cantidad; i++) {
+        const input       = document.createElement('input');
+        input.type        = 'number';
+        input.name        = 'notas[]';
+        input.placeholder = 'Nota ' + i;
+        input.min         = 0;
+        input.max         = 100;
+        input.required    = true;
+        contenedor.appendChild(input);
+    }
+
+    form.style.display = 'block';
+    document.getElementById('paso1').style.display = 'none';
+}
+</script>
