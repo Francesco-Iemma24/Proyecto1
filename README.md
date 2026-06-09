@@ -58,7 +58,6 @@ Desarrollar una aplicación web utilizando PHP y Programación Orientada a Objet
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="80"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="80"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="80"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="80"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="80"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="80"/>
 
@@ -66,7 +65,7 @@ Desarrollar una aplicación web utilizando PHP y Programación Orientada a Objet
 
 <div align="center">
 
-### PHP • HTML5 • CSS3 • Bootstrap 5 • Git • GitHub
+### PHP • HTML5 • CSS3 • Git • GitHub
 
 </div>
 
