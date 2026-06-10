@@ -14,7 +14,7 @@ class Problema5
         ];
 
         $resultado = [];
-
+        $categoria = '';
         foreach ($edades as $edad) {
             if ($edad >= 0 && $edad <= 12) {
                 $categoria = 'Niño';
