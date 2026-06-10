@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../models/Problema8.php';
+namespace App\Controllers;
+use App\Models\Problema8;
 
 class Problema8Controller
 {

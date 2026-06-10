@@ -1,6 +1,6 @@
 <?php
 // 1. IMPORTANTE: Requerir el controlador para procesar los datos bajo arquitectura MVC
-require_once 'controllers/Problema6Controller.php';
+use App\Controllers\Problema6Controller;
 
 $resultado = null;
 

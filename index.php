@@ -1,6 +1,7 @@
 <?php
 
 require_once 'views/header.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $problema = filter_input(INPUT_GET, 'problema', FILTER_SANITIZE_NUMBER_INT) ?? '';
 

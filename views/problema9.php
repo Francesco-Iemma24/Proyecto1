@@ -1,5 +1,6 @@
 <?php
-require_once 'controllers/Problema9Controller.php';
+use App\Controllers\Problema9Controller;
+
 
 $resultado = null;
 

@@ -1,5 +1,7 @@
 <?php
+namespace App\Models;
 
+use App\Utils\Utilidades; 
 class Problema2
 {
     public static function resolver()

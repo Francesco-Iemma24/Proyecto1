@@ -1,5 +1,5 @@
 <?php
-require_once 'controllers/Problema5Controller.php';
+use App\Controllers\Problema5Controller;
 
 $datos = null;
 

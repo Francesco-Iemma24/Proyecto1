@@ -1,6 +1,6 @@
 <?php
-require_once 'controllers/Problema4Controller.php';
-require_once 'utils/Navegacion.php';
+use App\Controllers\Problema4Controller;
+
 
 $resultado = null;
 if (isset($_POST['calcular'])) {

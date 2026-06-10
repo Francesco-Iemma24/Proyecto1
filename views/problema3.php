@@ -1,6 +1,6 @@
 <?php
-require_once 'controllers/Problema3Controller.php';
-require_once 'utils/Navegacion.php';
+use App\Controllers\Problema3Controller;
+
 
 $resultado = null; // Inicializamos en null para mejor control de flujos
 

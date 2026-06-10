@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../utils/Utilidades.php';
+namespace App\Models;
+
+use App\Utils\Utilidades;
 
 class Problema7
 {

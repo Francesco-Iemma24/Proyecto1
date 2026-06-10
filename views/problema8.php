@@ -1,6 +1,7 @@
 <?php
 // 1. IMPORTANTE: Requerir los archivos necesarios para que PHP reconozca las clases
-require_once 'controllers/Problema8Controller.php';
+namespace App\Controllers;
+      
 
 // Captura del POST y llamado al controlador correspondiente
 $resultado = null;

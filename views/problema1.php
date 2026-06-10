@@ -1,6 +1,5 @@
 <?php
-require_once 'controllers/Problema1Controller.php';
-require_once 'utils/Navegacion.php';
+use App\Controllers\Problema1Controller;
 
 $resultado = null;
 
